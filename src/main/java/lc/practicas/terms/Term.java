@@ -1,16 +1,21 @@
 package lc.practicas.terms;
 
 
-public class Term {
+public abstract class Term {
 
-	private TypeTerm typeTerm;
+	protected TypeTerm typeTerm;
 
-	public TypeTerm getTypeTerm(){
+	protected TypeTerm getTypeTerm(){
 		return this.typeTerm;
 	}
 	
-	public boolean equalsTypeTerm( Term term ){
+	protected boolean equalsTypeTerm( Term term ){
 		
 		return this.typeTerm == term.getTypeTerm() ; 
 	}
+	
+	public abstract boolean equals( Term term );
+	
+	public abstract Pair< Term , Term > getDiscordance( Term term ) throws DiscordanceNotFound;
+	
 }

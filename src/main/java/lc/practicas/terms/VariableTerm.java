@@ -4,6 +4,12 @@ public class VariableTerm extends Term {
 	
 	private String name;
 	
+	public VariableTerm( String name ){
+		this.name = name;
+		this.typeTerm = TypeTerm.variable;
+	}
+	
+	
 	public void setName(String name){
 		this.name = name;
 	}
@@ -24,5 +30,16 @@ public class VariableTerm extends Term {
 	
 	private boolean equalsName( VariableTerm term ){
 		return this.name.equals( term.getName() );
+	}
+	
+	@Override
+	public Pair<Term, Term> getDiscordance(Term term) throws DiscordanceNotFound {
+		Pair<Term,Term> discordancePair = null;
+		if( !this.equals(term) ){
+			discordancePair = new Pair<Term, Term>(this, term);
+		}else{
+			throw new DiscordanceNotFound();
+		}
+		return discordancePair;
 	}
 }
