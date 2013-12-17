@@ -1,29 +1,39 @@
 package lc.practicas.terms;
 
-public class Pair< L , R > {
-	private L left;
-	private R right;
+public class Pair{
+	private Term left;
+	private Term right;
 	
-	public Pair( L termLeft , R termRight ){
+	public Pair( Term termLeft , Term termRight ){
 		this.left = termLeft;
 		this.right = termRight;
 	}
 
-	public L getLeft() {
+	public Term getLeft() {
 		return left;
 	}
 
-	public void setLeft(L left) {
+	public void setLeft(Term left) {
 		this.left = left;
 	}
 
-	public R getRight() {
+	public Term getRight() {
 		return right;
 	}
 
-	public void setRight(R right) {
+	public void setRight( Term right) {
 		this.right = right;
 	}
 	
+	public boolean equals( Pair pair ){
+		boolean isEquals = false;
+		if( this.left.equals( pair.getLeft() ) 
+			&& this.right.equals(pair.getRight() ) ){
+			
+			isEquals = true;
+		}
+		
+		return isEquals;
+	}
 	
 }

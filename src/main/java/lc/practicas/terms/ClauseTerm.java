@@ -2,8 +2,6 @@ package lc.practicas.terms;
 
 import java.util.LinkedList;
 
-import com.sun.corba.se.impl.interceptors.PIHandlerImpl;
-
 public class ClauseTerm extends Term {
 
 	private String functor;
@@ -72,17 +70,18 @@ public class ClauseTerm extends Term {
 			Term term1 = list1.get(index);
 			Term term2 = list2.get(index);
 			isEquals = term1.equals(term2);
+			index++;
 		}
 		return isEquals;
 	}
 	
 	@Override
-	public Pair<Term, Term> getDiscordance( Term term ) throws DiscordanceNotFound {
-		Pair<Term,Term> discordancePair = null;
+	public Pair getDiscordance( Term term ) throws DiscordanceNotFound {
+		Pair discordancePair = null;
 		if( !this.equalsTypeTerm(term) 
 				|| !this.equalsFunctor( (ClauseTerm) term )
 				|| ! this.equalsList( ((ClauseTerm) term).getTermList() )){
-			discordancePair = new Pair<Term, Term>(this, term);
+			discordancePair = new Pair(this, term);
 		}else{
 			LinkedList<Term> termsList = ((ClauseTerm) term ).getTermList();
 			int size = this.termList.size();

@@ -32,10 +32,10 @@ public class AtomTerm extends Term {
 	}
 
 	@Override
-	public Pair<Term, Term> getDiscordance(Term term) throws DiscordanceNotFound {
-		Pair<Term,Term> discordancePair = null;
+	public Pair getDiscordance(Term term) throws DiscordanceNotFound {
+		Pair discordancePair = null;
 		if( !this.equals(term) ){
-			discordancePair = new Pair<Term, Term>(this, term);
+			discordancePair = new Pair(this, term);
 		}else{
 			throw new DiscordanceNotFound();
 		}
