@@ -57,4 +57,64 @@ public class ClauseTermTest {
 		Assert.assertFalse( clauseTerm12.equals( clauseTerm22 ));
 	}
 	
+	@Test 
+	public void testDistinctsTerms(){
+		
+		Term atomTerm = new AtomTerm("a");
+		Term variableTerm = new VariableTerm("X");
+		
+		Assert.assertFalse( clauseTerm1.equals(atomTerm));
+		Assert.assertFalse( clauseTerm1.equals(variableTerm));
+	}
+	
+	
+	@Test
+	public void testGetDiscordanceOtherTerms(){
+		Pair pairAtomClause = new Pair(clauseTerm1, atomTerm1);
+		Pair test;
+		try {
+			test = clauseTerm1.getDiscordance(atomTerm1);
+			Assert.assertTrue(test.equals(pairAtomClause));
+		} catch (DiscordanceNotFoundException e) {
+			Assert.fail("The terms are distincts");
+		}
+		
+		Term variableTerm = new VariableTerm("X");
+		Pair pairVariableClause = new Pair( clauseTerm1 , variableTerm );
+		try {
+			test = clauseTerm1.getDiscordance(variableTerm);
+			Assert.assertTrue(test.equals(pairVariableClause));
+		} catch (DiscordanceNotFoundException e) {
+			Assert.fail("The terms are distincts");
+		}
+		
+	}
+	
+	@Test
+	public void testDiscordanceElementClause(){
+		LinkedList<Term> list11 = new LinkedList<Term>();
+		LinkedList<Term> list12 = new LinkedList<Term>();
+		
+		list11.add(atomTerm1);
+		list12.add(atomTerm1);
+
+		list11.add(atomTerm1);
+		list12.add(atomTerm1);
+
+		list11.add(atomTerm1);
+		list12.add(atomTerm2);
+		
+		Term clause1 = new ClauseTerm( "g" , list11 );
+		Term clause2 = new ClauseTerm( "g" , list12 );
+			
+		Pair test1 = new Pair(atomTerm1, atomTerm2);
+		Pair test2;
+		try{
+			test2 = clause1.getDiscordance(clause2);
+			Assert.assertTrue( "The clausures should be differents", test1.equals(test2) );
+		}catch(DiscordanceNotFoundException e ){
+			Assert.fail("The terms are distincts");
+		}
+				
+	}
 }

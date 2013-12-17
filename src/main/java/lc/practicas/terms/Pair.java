@@ -28,7 +28,12 @@ public class Pair{
 	public boolean equals( Pair pair ){
 		boolean isEquals = false;
 		if( this.left.equals( pair.getLeft() ) 
-			&& this.right.equals(pair.getRight() ) ){
+			&& this.right.equals( pair.getRight() ) ){
+			
+			isEquals = true;
+		}
+		if( this.left.equals( pair.getRight())
+			&& this.right.equals( pair.getLeft() ) ){
 			
 			isEquals = true;
 		}

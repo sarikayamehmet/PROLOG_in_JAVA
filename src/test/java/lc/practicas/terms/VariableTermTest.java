@@ -32,4 +32,17 @@ public class VariableTermTest {
 		Assert.assertFalse( term1.equals(term2));
 	}
 	
+	@Test
+	public void testDiscordanceThrowExceptionSameVariable(){
+		
+		try{
+			term1.getDiscordance(term1);
+			Assert.fail("No exception was thrown");
+		}catch( DiscordanceNotFoundException e ){
+			//Pass the test
+		}
+	}
+	
+	
+	
 }

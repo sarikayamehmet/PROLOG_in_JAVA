@@ -16,9 +16,11 @@ public class PairTest {
 	public void testEqualsPairAtoms(){
 		Pair pair1 = new Pair(atomTerm1, atomTerm2);
 		Pair pair2 = new Pair(atomTerm1, atomTerm2);
+		Pair pair3 = new Pair(atomTerm2 , atomTerm1);
 		
 		Assert.assertTrue( pair1.equals(pair2) );
 		Assert.assertTrue( pair1.equals(pair1) );
+		Assert.assertTrue( pair3.equals(pair1) );
 	}
 	
 	@Test
@@ -37,6 +39,5 @@ public class PairTest {
 		
 		Assert.assertFalse( pair1.equals(pair2) );
 	}
-	
 	
 }

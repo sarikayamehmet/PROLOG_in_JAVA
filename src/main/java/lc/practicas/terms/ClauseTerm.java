@@ -76,11 +76,11 @@ public class ClauseTerm extends Term {
 	}
 	
 	@Override
-	public Pair getDiscordance( Term term ) throws DiscordanceNotFound {
+	public Pair getDiscordance( Term term ) throws DiscordanceNotFoundException {
 		Pair discordancePair = null;
 		if( !this.equalsTypeTerm(term) 
-				|| !this.equalsFunctor( (ClauseTerm) term )
-				|| ! this.equalsList( ((ClauseTerm) term).getTermList() )){
+				|| ! this.equalsFunctor( (ClauseTerm) term )
+				|| ! this.equalsList( ((ClauseTerm) term ).getTermList() )){
 			discordancePair = new Pair(this, term);
 		}else{
 			LinkedList<Term> termsList = ((ClauseTerm) term ).getTermList();
@@ -88,14 +88,14 @@ public class ClauseTerm extends Term {
 			int index = 0;
 			boolean equals = true;
 			while( index < size && equals ){
-				equals = this.termList.get(index).equals( termsList.get(index));
+				equals = this.termList.get(index).equals( termsList.get(index) );
 				if( equals ){
 					index++;
 				}
 			}
 			
 			if( equals ){
-				throw new DiscordanceNotFound();
+				throw new DiscordanceNotFoundException();
 			}else{
 				discordancePair = this.termList.get(index).getDiscordance(termList.get(index));			
 			}	

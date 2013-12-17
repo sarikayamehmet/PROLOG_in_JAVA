@@ -16,6 +16,6 @@ public abstract class Term {
 	
 	public abstract boolean equals( Term term );
 	
-	public abstract Pair getDiscordance( Term term ) throws DiscordanceNotFound;
+	public abstract Pair getDiscordance( Term term ) throws DiscordanceNotFoundException;
 	
 }
