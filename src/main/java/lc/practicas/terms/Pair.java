@@ -40,5 +40,14 @@ public class Pair{
 		
 		return isEquals;
 	}
+
+
+	public boolean containsVariables() {
+		boolean containsVariables = 
+				this.left.getTypeTerm() == TypeTerm.variable
+				|| this.right.getTypeTerm() == TypeTerm.variable ;
+		
+		return containsVariables;
+	}
 	
 }

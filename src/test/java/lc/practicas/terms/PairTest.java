@@ -40,4 +40,24 @@ public class PairTest {
 		Assert.assertFalse( pair1.equals(pair2) );
 	}
 	
+	@Test
+	public void testContainVariables(){
+		Pair pair1 = new Pair( atomTerm1 , atomTerm2 );
+		Assert.assertFalse( "The pair no contains variables", pair1.containsVariables());
+		
+		Pair pair2 = new Pair( clauseTerm , clauseTerm );
+		Assert.assertFalse( "The pair no contains variables", pair2.containsVariables());
+		
+		Pair pair3 = new Pair( variableTerm1 , variableTerm2);
+		Assert.assertTrue( "The pair contains variables" , pair3.containsVariables());
+		
+		Pair pair4 = new Pair( variableTerm1 , clauseTerm);
+		Assert.assertTrue( "The pair contains variables" , pair4.containsVariables());
+		
+		Pair pair5 = new Pair( atomTerm1 , variableTerm1 );
+		Assert.assertTrue( "The pair contains variables" , pair5.containsVariables());
+		
+		
+	}
+	
 }
