@@ -17,5 +17,18 @@ public abstract class Term {
 	public abstract boolean equals( Term term );
 	
 	public abstract Pair getDiscordance( Term term ) throws DiscordanceNotFoundException;
+
+	public boolean containsTerm(Term term){
+		return this.equals(term);
+	}
 	
+	public Term getReplace( Term variable , Term value ) {
+		Term toret;
+		if( ! this.equals( variable ) ){
+			toret = this;
+		}else{
+			toret = value;
+		}
+		return toret;
+	}
 }

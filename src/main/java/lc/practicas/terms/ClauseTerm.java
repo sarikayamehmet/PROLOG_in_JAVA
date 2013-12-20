@@ -104,4 +104,36 @@ public class ClauseTerm extends Term {
 		}
 		return discordancePair;
 	}
+	
+	@Override
+	public boolean containsTerm( Term term ){
+		boolean contains = false;
+		if( super.containsTerm( term ) ){
+			contains = true;
+		}else{
+			int size = this.termList.size();
+			int index = 0 ;
+			while( index < size && ! contains ){
+				Term aux = termList.get(index);
+				contains = aux.containsTerm(term);
+				index++;
+				
+			}
+		}
+		return contains;
+	}
+	
+	@Override
+	public Term getReplace( Term variable , Term value ){
+		LinkedList<Term> termListAux = new LinkedList<Term>();
+		int size = this.termList.size();
+		for( int i = 0 ; i < size ; i++ ){
+			Term elementList = termList.get(i);
+			Term newTerm = elementList.getReplace(variable, value);
+			termListAux.add(newTerm);
+		}
+		
+		Term toret = new ClauseTerm( this.functor, termListAux );
+		return toret;
+	}
 }
