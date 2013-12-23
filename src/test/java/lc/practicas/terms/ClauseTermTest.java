@@ -11,6 +11,8 @@ public class ClauseTermTest {
 	LinkedList<Term> list2 = new LinkedList<Term>();
 	Term atomTerm1 = new AtomTerm("hola");
 	Term atomTerm2 = new AtomTerm("adios");
+	Term variableTerm1 = new VariableTerm("X");
+	Term variableTerm2 = new VariableTerm("Y");
 	Term clauseTerm1 = new ClauseTerm("g", list);
 	Term clauseTerm2 = new ClauseTerm("f", list);
 	Term clauseTerm3 = new ClauseTerm("f", list);
@@ -116,5 +118,46 @@ public class ClauseTermTest {
 			Assert.fail("The terms are distincts");
 		}
 				
+	}
+
+	
+	@Test
+	public void testContainsAtom(){
+		LinkedList<Term> list11 = new LinkedList<Term>();
+		
+		list11.add(atomTerm1);
+		list11.add(atomTerm1);
+		list11.add(atomTerm1);
+		list11.add(variableTerm1);
+		
+		Term clause1 = new ClauseTerm( "g" , list11 );
+		
+		Assert.assertTrue( "The clause contains the variable " , clause1.containsTerm(variableTerm1) );
+	}
+	
+	@Test
+	public void testReplace(){
+		LinkedList<Term> list11 = new LinkedList<Term>();
+		
+		list11.add(atomTerm1);
+		list11.add(atomTerm1);
+		list11.add(atomTerm1);
+		list11.add(variableTerm1);
+		
+		Term clause1 = new ClauseTerm( "g" , list11 );
+		
+		LinkedList<Term> list12 = new LinkedList<Term>();
+		
+		list12.add(atomTerm1);
+		list12.add(atomTerm1);
+		list12.add(atomTerm1);
+		list12.add(atomTerm2);
+		
+		Term clause2 = new ClauseTerm( "g" , list12 );
+		Term auxClause = null;
+
+		auxClause = clause1.getReplace( variableTerm1 , atomTerm2 );
+
+		Assert.assertTrue( auxClause.equals(clause2) );
 	}
 }

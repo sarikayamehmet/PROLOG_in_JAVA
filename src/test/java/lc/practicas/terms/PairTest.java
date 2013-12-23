@@ -11,7 +11,6 @@ public class PairTest {
 	Term variableTerm2 = new VariableTerm("Y");
 	Term clauseTerm = new ClauseTerm("dd",null);
 	
-	
 	@Test
 	public void testEqualsPairAtoms(){
 		Pair pair1 = new Pair(atomTerm1, atomTerm2);
@@ -55,9 +54,6 @@ public class PairTest {
 		Assert.assertTrue( "The pair contains variables" , pair4.containsVariables());
 		
 		Pair pair5 = new Pair( atomTerm1 , variableTerm1 );
-		Assert.assertTrue( "The pair contains variables" , pair5.containsVariables());
-		
-		
+		Assert.assertTrue( "The pair contains variables" , pair5.containsVariables());	
 	}
-	
 }

@@ -1,39 +1,42 @@
 package lc.practicas.terms;
 
 public class Pair{
-	private Term left;
-	private Term right;
+	private Term leftTerm;
+	private Term rightTerm;
 	
 	public Pair( Term termLeft , Term termRight ){
-		this.left = termLeft;
-		this.right = termRight;
+		this.leftTerm = termLeft;
+		this.rightTerm = termRight;
+		this.reorder();
 	}
 
 	public Term getLeft() {
-		return left;
+		return leftTerm;
 	}
 
 	public void setLeft(Term left) {
-		this.left = left;
+		this.leftTerm = left;
+		this.reorder();
 	}
 
 	public Term getRight() {
-		return right;
+		return rightTerm;
 	}
 
 	public void setRight( Term right) {
-		this.right = right;
+		this.rightTerm = right;
+		this.reorder();
 	}
 	
 	public boolean equals( Pair pair ){
 		boolean isEquals = false;
-		if( this.left.equals( pair.getLeft() ) 
-			&& this.right.equals( pair.getRight() ) ){
+		if( this.leftTerm.equals( pair.getLeft() ) 
+			&& this.rightTerm.equals( pair.getRight() ) ){
 			
 			isEquals = true;
 		}
-		if( this.left.equals( pair.getRight())
-			&& this.right.equals( pair.getLeft() ) ){
+		if( this.leftTerm.equals( pair.getRight())
+			&& this.rightTerm.equals( pair.getLeft() ) ){
 			
 			isEquals = true;
 		}
@@ -44,10 +47,19 @@ public class Pair{
 
 	public boolean containsVariables() {
 		boolean containsVariables = 
-				this.left.getTypeTerm() == TypeTerm.variable
-				|| this.right.getTypeTerm() == TypeTerm.variable ;
+				this.leftTerm.getTypeTerm() == TypeTerm.variable
+				|| this.rightTerm.getTypeTerm() == TypeTerm.variable ;
 		
 		return containsVariables;
 	}
 	
+	
+	private void reorder() {
+		if( leftTerm.getTypeTerm() != TypeTerm.variable 
+				&& rightTerm.getTypeTerm() == TypeTerm.variable ){
+			Term aux = leftTerm;
+			leftTerm = rightTerm;
+			rightTerm = aux;
+		}
+	}
 }
