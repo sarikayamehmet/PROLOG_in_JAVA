@@ -42,4 +42,9 @@ public class VariableTerm extends Term {
 		}
 		return discordancePair;
 	}
+	
+	@Override
+	public boolean isFinal(){
+		return false;
+	}
 }

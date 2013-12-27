@@ -42,6 +42,8 @@ public class AtomTerm extends Term {
 		return discordancePair;
 	}
 
-	
+	public boolean isFinal(){
+		return true;
+	}
 
 }

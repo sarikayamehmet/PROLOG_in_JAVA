@@ -136,4 +136,23 @@ public class ClauseTerm extends Term {
 		Term toret = new ClauseTerm( this.functor, termListAux );
 		return toret;
 	}
+	
+	@Override
+	public int hashCode(){
+		int hashCode;
+		hashCode = functor.hashCode() * 100;
+		hashCode = hashCode + termList.size();
+		return hashCode;
+	}
+	
+	@Override
+	public boolean isFinal(){
+		boolean isFinal = true;
+		Iterator<Term> iterator = termList.iterator();
+		while( iterator.hasNext() && isFinal ){
+			Term term = iterator.next();
+			isFinal = term.isFinal();
+		}
+		return isFinal;
+	}
 }
