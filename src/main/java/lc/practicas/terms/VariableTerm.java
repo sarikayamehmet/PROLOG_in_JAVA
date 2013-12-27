@@ -47,4 +47,9 @@ public class VariableTerm extends Term {
 	public boolean isFinal(){
 		return false;
 	}
+	
+	@Override
+	public String toString(){
+		return this.name;
+	}
 }

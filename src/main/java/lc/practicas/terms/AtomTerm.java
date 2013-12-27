@@ -45,5 +45,10 @@ public class AtomTerm extends Term {
 	public boolean isFinal(){
 		return true;
 	}
+	
+	@Override
+	public String toString(){
+		return this.name;
+	}
 
 }

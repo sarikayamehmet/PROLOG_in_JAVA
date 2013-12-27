@@ -155,4 +155,19 @@ public class ClauseTerm extends Term {
 		}
 		return isFinal;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sbuilder = new StringBuilder();
+		sbuilder.append(this.functor);
+		sbuilder.append("(");
+		Iterator<Term> iterator = termList.iterator();
+		while( iterator.hasNext() ){
+			Term term = iterator.next();
+			sbuilder.append(term.toString());
+		}
+		sbuilder.append(")");
+		return sbuilder.toString();
+	}
+	
 }
